@@ -1,0 +1,23 @@
+.middle {
+    margin: auto;
+    width: 40%;
+    padding: 100px 0 ;
+}
+#delete {
+    display: inline;
+}
+.head {
+    padding-top: 30px;
+}
+.card{
+    background-color: #343a40;
+    color: #ffffff;
+}
+.card-img {
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+.alert {
+    margin-top: 80px;
+}

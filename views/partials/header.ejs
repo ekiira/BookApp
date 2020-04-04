@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book App</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/stylesheet/app.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top scrolled">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand"><i class="fas fa-book-reader"></i> Book App</a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li><a href="/books" class="nav-link">Home</a></li>  
+                        <li><a href="/books/new" class="nav-link">Add Book</a></li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <% if(!currentUser) { %>
+                            <li>
+                                <a href="/login" class="nav-link">Login</a>
+                            </li>
+                            <li>
+                                <a href="/register" class="nav-link">Sign Up</a>
+                            </li>
+                        <% } else { %>
+                            <li>
+                                <a href="" class="nav-link">Signed in as <%= currentUser.username %></a>
+                            </li>
+                            <li>
+                                <a href="/logout" class="nav-link">Log Out</a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div> 
+        </nav>
+        <div class="container">
+            <% if(success && success.length > 0) { %>
+                <div class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+            <% } %> 
+            <% if(error && error.length > 0) { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+            <% } %>
+        </div>

@@ -1,0 +1,54 @@
+<%- include ('../partials/header') %>
+
+    <div class="middle">
+        <div class="card my-5" style="width: 35rem;">
+            <div class="card-body">
+                <div class="card-text">
+                    <h2><%= book.title %></h2>
+                </div>
+            </div>
+            <img src="<%= book.image %>" class="card-img-top">
+            <div class="card-body">
+                <p class="card-text text-center"><small class="text-muted"><i class="fas fa-user-alt"></i> <%= book.author.username %></small></p>
+                <p class="card-text"><%= book.plot %></p>
+                <% if(currentUser && book.author.id.equals(currentUser._id)) { %>
+                    <a class="btn btn-outline-secondary" href="/books/<%= book._id %>/edit">Edit</a>
+                    <form id="delete" action="/books/<%= book._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-outline-secondary">Delete</button>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+        <div class="card my-5" style="width: 35rem;">
+            <div class="card-body">
+               <div class="card-text">
+                <p class="float-right">
+                    <a href="/books/<%= book._id %>/comments/new" class="btn btn-outline-secondary">Add comments</a>
+                </p>
+               </div>
+            </div>
+            <% book.comments.forEach(function(comment){ %>
+            <div class="card-body">
+                <div class="card-text">
+                    <p>
+                        <%= comment.text %>
+                        <br>
+                        <em><%= comment.author.username %></em>
+                    </p>
+                </div>
+
+                <div class="card-text">
+                  <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-outline-secondary" href="/books/<%= book._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                        <form id="delete" action="/books/<%= book._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-outline-secondary">Delete</button>
+                        </form>
+                    <% } %>
+                </div> 
+              </div>
+              <% }) %>
+        </div>
+    </div>
+
+
+<%- include ('../partials/footer') %>

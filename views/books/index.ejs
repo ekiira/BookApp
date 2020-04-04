@@ -1,0 +1,31 @@
+<%- include ('../partials/header') %>
+
+   <div class="middle">
+    <% books.forEach(function(book) { %>
+        <div class="text-center">
+            <div class="card mb-3" style="max-width: 500px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="<%= book.image %>" class="card-img img-fluid" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= book.title %></h5>
+                        <p class="card-text"><small class="text-muted"><i class="fas fa-user-alt"></i> <%= book.author.username %></small></p>
+                        <p class="card-text"><%= book.plot.substring(0, 100) %>...</p>
+                        <a href="/books/<%= book._id %>">Read More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+    
+    
+      <% }) %>
+       
+   </div>
+
+
+
+<%- include ('../partials/footer') %>

@@ -1,0 +1,10 @@
+<%- include('../partials/header') %>
+    <div class="middle">
+        <form action="/books/<%= book._id %>/comments" method="POST">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="text" name="comment[text]">
+            </div>
+            <button class="btn btn-secondary btn-block">Submit</button>
+        </form>
+    </div>
+<%- include('../partials/footer') %>
