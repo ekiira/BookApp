@@ -27,8 +27,8 @@ const commentRoutes = require('./routes/comments');
 dotenv.config();
 
 // DATABASE CONNECTION
-const dbPassword = process.env.DBPW;
-
+// const dbPassword = process.env.DBPW;
+const dbPassword = 'o5EwRQBpWRieg6YD';
 const uri = `mongodb+srv://Jay:${dbPassword}@cluster0.mxsic.mongodb.net/Books?retryWrites=true&w=majority`;
 
 mongoose.connect(uri, 
