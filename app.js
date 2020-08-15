@@ -71,7 +71,7 @@ app.use('/books', bookRoutes);
 app.use('/books/:id/comments', commentRoutes);
 
 
-app.listen(3000, () => {
-  console.log('Server has started');
+const port = process.env.PORT || 5000;
+app.listen(port, () => {
+  process.stdout.write(`server has started at port ${port}`);
 });
-
