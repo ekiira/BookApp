@@ -27,11 +27,10 @@ const commentRoutes = require('./routes/comments');
 dotenv.config();
 
 // DATABASE CONNECTION
-// const dbPassword = process.env.DBPW;
-const dbPassword = 'o5EwRQBpWRieg6YD';
+const dbPassword = process.env.DBPW;
 const uri = `mongodb+srv://Jay:${dbPassword}@cluster0.mxsic.mongodb.net/Books?retryWrites=true&w=majority`;
 
-mongoose.connect(uri, 
+mongoose.connect(uri,
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
   console.log('connected to database successfully');
 });
