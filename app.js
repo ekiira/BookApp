@@ -14,6 +14,7 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
+const dotenv = require('dotenv');
 const User = require('./models/user');
 const Book = require('./models/book');
 const Comment = require('./models/comment');
@@ -23,9 +24,21 @@ const indexRoutes = require('./routes/index');
 const bookRoutes = require('./routes/books');
 const commentRoutes = require('./routes/comments');
 
+dotenv.config();
 
-mongoose.connect('mongodb://localhost/book_app', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.set('useFindAndModify', false);
+// DATABASE CONNECTION
+const dbPassword = process.env.DBPW;
+
+const uri = `mongodb+srv://Jay:${dbPassword}@cluster0.mxsic.mongodb.net/Books?retryWrites=true&w=majority`;
+
+mongoose.connect(uri, 
+  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
+  console.log('connected to database successfully');
+});
+
+
+// mongoose.connect('mongodb://localhost/book_app', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.set('useFindAndModify', false);
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
@@ -62,3 +75,4 @@ app.use('/books/:id/comments', commentRoutes);
 app.listen(3000, () => {
   console.log('Server has started');
 });
+

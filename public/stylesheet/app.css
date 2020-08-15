@@ -1,7 +1,9 @@
 .middle {
     margin: auto;
-    width: 40%;
+    width: 60%;
     padding: 100px 0 ;
+    height: 100%;
+    justify-content: center;
 }
 #delete {
     display: inline;
@@ -20,4 +22,12 @@
 }
 .alert {
     margin-top: 80px;
+}
+
+@media (max-width: 991px) {
+    .middle {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+    }
 }
