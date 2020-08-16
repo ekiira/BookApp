@@ -31,7 +31,7 @@ const dbPassword = process.env.DBPW;
 const uri = `mongodb+srv://Jay:${dbPassword}@cluster0.mxsic.mongodb.net/Books?retryWrites=true&w=majority`;
 
 const handleError = (err) => {
-  process.stdout.write(err);
+  console.log(err);
 };
 
 mongoose.connect(uri,
@@ -76,5 +76,5 @@ app.use('/books/:id/comments', commentRoutes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
-  process.stdout.write(`server has started at port ${port}`);
+  console.log(`server has started at port ${port}`);
 });
