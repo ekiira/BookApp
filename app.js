@@ -30,14 +30,17 @@ dotenv.config();
 const dbPassword = process.env.DBPW;
 const uri = `mongodb+srv://Jay:${dbPassword}@cluster0.mxsic.mongodb.net/Books?retryWrites=true&w=majority`;
 
+const handleError = (err) => {
+  process.stdout.write(err);
+};
+
 mongoose.connect(uri,
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
   console.log('connected to database successfully');
-});
+}).catch((error) => handleError(error));
 
+// END OF DATABASE CONNECTION
 
-// mongoose.connect('mongodb://localhost/book_app', { useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.set('useFindAndModify', false);
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
