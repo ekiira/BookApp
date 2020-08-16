@@ -27,17 +27,33 @@ const commentRoutes = require('./routes/comments');
 dotenv.config();
 
 // DATABASE CONNECTION
-const dbPassword = process.env.DBPW;
-const uri = `mongodb+srv://Jay:${dbPassword}@cluster0.mxsic.mongodb.net/Books?retryWrites=true&w=majority`;
+const db = process.env.DB_URI;
 
-const handleError = (err) => {
-  console.log(err);
+const connectDB = async () => {
+  try {
+    await mongoose.connect(db, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useFindAndModify: false
+    });
+    console.log("MongoDB is Connected...");
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
 };
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-  .then(() => {
-    console.log('connected to database successfully');
-  }).catch((error) => handleError(error));
+connectDB();
+
+// const uri = `mongodb+srv://Jay:${dbPassword}@cluster0.mxsic.mongodb.net/Books?retryWrites=true&w=majority`;
+
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true,  })
+//   .then(() => {
+//     console.log('connected to database successfully');
+//   })
+//   .catch((error) => {
+//     console.error(`Error connecting to the database. \n${error}`);
+//   }
 
 // END OF DATABASE CONNECTION
 
