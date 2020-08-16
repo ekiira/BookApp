@@ -34,10 +34,10 @@ const handleError = (err) => {
   console.log(err);
 };
 
-mongoose.connect(uri,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }).then(() => {
-  console.log('connected to database successfully');
-}).catch((error) => handleError(error));
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+  .then(() => {
+    console.log('connected to database successfully');
+  }).catch((error) => handleError(error));
 
 // END OF DATABASE CONNECTION
 
